@@ -1,0 +1,1018 @@
+openapi: 3.0.0
+info:
+  title: Digitial Media Store (DMS) API
+  description: This OpenAPI yaml describes the REST API for the Digital Media Store
+    database.
+  version: 1.0.0
+servers:
+- url: http://localhost:3000
+  description: The localhost API server for the Digital Media Store.
+- url: http://staging-api.dms.com
+  description: The staging environment for the DMS REST API.
+paths:
+  /employee/{id}:
+    get:
+      summary: Returns an employee record.
+      operationId: employee_id_get
+      parameters:
+      - name: id
+        in: path
+        description: Employee ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Get a JSON object of employee
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+        "400":
+          description: Bad Request. Malformed id or payload.
+        "404":
+          description: Unable to locate object with provided id.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /employee:
+    put:
+      summary: Returns an updated employee record.
+      operationId: employee_put
+      requestBody:
+        description: Update employee
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Employee"
+      responses:
+        "200":
+          description: Updated employee
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+    post:
+      summary: Returns a newly created employee record.
+      operationId: employee_post
+      requestBody:
+        description: Create an employee
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Employee"
+      responses:
+        "201":
+          description: Created employee
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /customer/{id}:
+    get:
+      summary: Returns a customer.
+      operationId: customer_id_get
+      parameters:
+      - name: id
+        in: path
+        description: Customer ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Get customer object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        "400":
+          description: Bad Request. Malformed id or payload.
+        "404":
+          description: Unable to locate object with provided id.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /customer:
+    put:
+      summary: Returns an updated customer record.
+      operationId: customer_put
+      requestBody:
+        description: Update customer
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+      responses:
+        "200":
+          description: Updated customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+    post:
+      summary: Returns a newly created customer record.
+      operationId: customer_post
+      requestBody:
+        description: Create customer
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+      responses:
+        "201":
+          description: Created customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /artist/{id}:
+    get:
+      summary: Returns an artist.
+      operationId: artist_id_get
+      parameters:
+      - name: id
+        in: path
+        description: Artist ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Get artist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Artist"
+        "400":
+          description: Bad Request. Malformed id or payload.
+        "404":
+          description: Unable to locate object with provided id.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /artist:
+    put:
+      summary: Returns an updated artist.
+      operationId: artist_put
+      requestBody:
+        description: Update artist
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Artist"
+      responses:
+        "200":
+          description: Updated customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Artist"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+    post:
+      summary: Create an artist.
+      operationId: artist_post
+      requestBody:
+        description: Create artist
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Artist"
+      responses:
+        "201":
+          description: Created customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Artist"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /album/{id}:
+    get:
+      summary: Returns an album.
+      operationId: album_id_get
+      parameters:
+      - name: id
+        in: path
+        description: Album ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Get album
+        "400":
+          description: Bad Request. Malformed id or payload.
+        "404":
+          description: Unable to locate object with provided id.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /album:
+    put:
+      summary: Updates an album
+      operationId: album_put
+      requestBody:
+        description: Update album
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Album"
+      responses:
+        "200":
+          description: Updated album
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+    post:
+      summary: Create an album.
+      operationId: album_post
+      requestBody:
+        description: Create album
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Album"
+      responses:
+        "201":
+          description: Created album
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /genre/{id}:
+    get:
+      summary: Returns a genre.
+      operationId: genre_id_get
+      parameters:
+      - name: id
+        in: path
+        description: Genre ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Get genre
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Genre"
+        "400":
+          description: Bad Request. Malformed id or payload.
+        "404":
+          description: Unable to locate object with provided id.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /genre:
+    put:
+      summary: Returns an updated genre.
+      operationId: genre_put
+      requestBody:
+        description: Update genre
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Genre"
+      responses:
+        "200":
+          description: Updated genre
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Genre"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+    post:
+      summary: Create a genre.
+      operationId: genre_post
+      requestBody:
+        description: Create genre
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Genre"
+      responses:
+        "201":
+          description: Create genre
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Genre"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /mediatype/{id}:
+    get:
+      summary: Returns a media type.
+      operationId: mediatype_id_get
+      parameters:
+      - name: id
+        in: path
+        description: Media Type ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Get media type
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MediaType"
+        "400":
+          description: Bad Request. Malformed id or payload.
+        "404":
+          description: Unable to locate object with provided id.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /mediatype:
+    put:
+      summary: Update a media type
+      operationId: mediatype_put
+      requestBody:
+        description: Update media type
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MediaType"
+      responses:
+        "200":
+          description: Updated media type
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MediaType"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+    post:
+      summary: Create a media type.
+      operationId: mediatype_post
+      requestBody:
+        description: Create media type
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MediaType"
+      responses:
+        "201":
+          description: Update customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MediaType"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /track/{id}:
+    get:
+      summary: Returns a song track
+      operationId: track_id_get
+      parameters:
+      - name: id
+        in: path
+        description: Track ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Get song track
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Track"
+        "400":
+          description: Bad Request. Malformed id or payload.
+        "404":
+          description: Unable to locate object with provided id.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /track:
+    put:
+      summary: Updates a song track
+      operationId: track_put
+      requestBody:
+        description: Update song track
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Track"
+      responses:
+        "200":
+          description: Update customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Track"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+    post:
+      summary: Create a song track.
+      operationId: track_post
+      requestBody:
+        description: Create song track
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Track"
+      responses:
+        "201":
+          description: Update customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Track"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /playlist/{id}:
+    get:
+      summary: Returns a playlist
+      operationId: playlist_id_get
+      parameters:
+      - name: id
+        in: path
+        description: Playlist ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Update playlist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Playlist"
+        "400":
+          description: Bad Request. Malformed id or payload.
+        "404":
+          description: Unable to locate object with provided id.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+    delete:
+      summary: Delete playlist
+      operationId: playlist_id_delete
+      parameters:
+      - name: id
+        in: path
+        description: Playlist ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Deleted playlist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Playlist"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /playlist:
+    put:
+      summary: Returns a modified playlist
+      operationId: playlist_put
+      requestBody:
+        description: Update playlist
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Playlist"
+      responses:
+        "200":
+          description: Updated playlist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Playlist"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+    post:
+      summary: Create a playlist.
+      operationId: playlist_post
+      requestBody:
+        description: Create playlist
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Playlist"
+      responses:
+        "201":
+          description: Update customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Playlist"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /playlisttrack/{id}:
+    get:
+      summary: Returns a playlist track
+      operationId: playlisttrack_id_get
+      parameters:
+      - name: id
+        in: path
+        description: Playlist Track ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Get playlist track
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaylistTrack"
+        "400":
+          description: Bad Request. Malformed id or payload.
+        "404":
+          description: Unable to locate object with provided id.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+    delete:
+      summary: Deletes a playlist track
+      operationId: playlisttrack_id_delete
+      parameters:
+      - name: id
+        in: path
+        description: Playlist Track ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Delete playlist track
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaylistTrack"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /playlisttrack:
+    put:
+      summary: Updates a playlist track
+      operationId: playlisttrack_put
+      requestBody:
+        description: Update playlist track
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PlaylistTrack"
+      responses:
+        "200":
+          description: Update customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaylistTrack"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+    post:
+      summary: Create a playlist track.
+      operationId: playlisttrack_post
+      requestBody:
+        description: Create playlist track
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PlaylistTrack"
+      responses:
+        "201":
+          description: Create playlist track
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaylistTrack"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /invoice/{id}:
+    get:
+      summary: Returns an invoice.
+      operationId: invoice_id_get
+      parameters:
+      - name: id
+        in: path
+        description: Invoice ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Get invoice
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invoice"
+        "400":
+          description: Bad Request. Malformed id or payload.
+        "404":
+          description: Unable to locate object with provided id.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /invoice:
+    put:
+      summary: Returns an updated invoice.
+      operationId: invoice_put
+      requestBody:
+        description: Update invoice
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Invoice"
+      responses:
+        "200":
+          description: Updated invoice
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invoice"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+    post:
+      summary: Returns an invoice.
+      operationId: invoice_post
+      requestBody:
+        description: Create invoice
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Invoice"
+      responses:
+        "201":
+          description: Create invoice
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invoice"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /invoiceline/{id}:
+    get:
+      summary: Returns a line from an invoice
+      operationId: invoiceline_id_get
+      parameters:
+      - name: id
+        in: path
+        description: Invoice Line ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Get invoice line
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvoiceLine"
+        "400":
+          description: Bad Request. Malformed id or payload.
+        "404":
+          description: Unable to locate object with provided id.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /invoiceline:
+    put:
+      summary: Update invoice line
+      operationId: invoiceline_put
+      requestBody:
+        description: Update invoice line
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InvoiceLine"
+      responses:
+        "200":
+          description: Updated invoice line item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvoiceLine"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+    post:
+      summary: Create a invoice line item
+      operationId: invoiceline_post
+      requestBody:
+        description: Create invoice line item
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InvoiceLine"
+      responses:
+        "201":
+          description: Created invoice line
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvoiceLine"
+        "400":
+          description: Bad Request. Malformed id or payload.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+components:
+  schemas:
+    Album:
+      type: object
+      properties:
+        id:
+          type: integer
+        Title:
+          type: string
+        ArtistId:
+          type: integer
+      description: An Album Object
+    Artist:
+      type: object
+      properties:
+        id:
+          type: integer
+        Name:
+          type: string
+      description: An artist/musician Object
+      example:
+        id: 0
+        Name: Name
+    Customer:
+      type: object
+      properties:
+        id:
+          type: integer
+        LastName:
+          type: string
+        FirstName:
+          type: string
+        Company:
+          type: string
+        Address:
+          type: string
+        City:
+          type: string
+        State:
+          type: string
+        Country:
+          type: string
+        ZipCode:
+          pattern: "d{5}"
+          type: string
+        Phone:
+          pattern: "[+]?d{1}? (d{3}) d{3}-d{4}"
+          type: string
+        Email:
+          type: string
+        SupportRepId:
+          type: integer
+      description: A customer Object
+      example:
+        Company: Company
+        Email: Email
+        Address: Address
+        FirstName: FirstName
+        State: State
+        ZipCode: ZipCode
+        Phone: Phone
+        SupportRepId: 6
+        Country: Country
+        id: 0
+        LastName: LastName
+        City: City
+    Employee:
+      type: object
+      properties:
+        LastName:
+          type: string
+        FirstName:
+          type: string
+        Title:
+          type: string
+        ReportsTo:
+          type: integer
+        BirthDate:
+          type: string
+          format: date
+        HireDate:
+          type: string
+          format: date
+        Company:
+          type: string
+        Address:
+          type: string
+        City:
+          type: string
+        State:
+          type: string
+        Country:
+          type: string
+        ZipCode:
+          pattern: "d{5}"
+          type: string
+        Phone:
+          pattern: "[+]?d{1}? (d{3}) d{3}-d{4}"
+          type: string
+        Email:
+          type: string
+      description: An employee Object
+      example:
+        Company: Company
+        Email: Email
+        Address: Address
+        FirstName: FirstName
+        ZipCode: ZipCode
+        Title: Title
+        City: City
+        State: State
+        Phone: Phone
+        ReportsTo: 0
+        HireDate: 2000-01-23
+        Country: Country
+        LastName: LastName
+        BirthDate: 2000-01-23
+    Genre:
+      type: object
+      properties:
+        id:
+          type: integer
+        Name:
+          type: string
+      description: A genre classification Object
+      example:
+        id: 0
+        Name: Name
+    Invoice:
+      type: object
+      properties:
+        id:
+          type: integer
+        CustomerId:
+          type: integer
+        InvoiceDate:
+          type: string
+          format: date-time
+        BillingAddress:
+          type: string
+        BillingCity:
+          type: string
+        BillingState:
+          type: string
+        BillingCountry:
+          type: string
+        BillingZipCode:
+          pattern: "d{5}"
+          type: string
+        Total:
+          type: number
+          format: float
+        invoicelines:
+          type: array
+          items:
+            anyOf:
+            - $ref: "#/components/schemas/InvoiceLine"
+      description: An invoice Object
+      example:
+        BillingAddress: BillingAddress
+        BillingZipCode: BillingZipCode
+        BillingCountry: BillingCountry
+        BillingCity: BillingCity
+        Total: 1.4658129
+        invoicelines:
+        - ""
+        - ""
+        id: 0
+        CustomerId: 6
+        InvoiceDate: 2000-01-23T04:56:07.000+00:00
+        BillingState: BillingState
+    InvoiceLine:
+      type: object
+      properties:
+        id:
+          type: integer
+        InvoiceId:
+          type: integer
+        TrackId:
+          type: integer
+        UnitPrice:
+          type: number
+          format: float
+        Quantity:
+          type: integer
+      description: An invoice line Object
+      example:
+        UnitPrice: 5.962134
+        Quantity: 5
+        id: 0
+        InvoiceId: 6
+        TrackId: 1
+    MediaType:
+      type: object
+      properties:
+        id:
+          type: integer
+        Name:
+          type: string
+      description: An type of media Object
+      example:
+        id: 0
+        Name: Name
+    Playlist:
+      type: object
+      properties:
+        id:
+          type: integer
+        Name:
+          type: string
+        tracks:
+          type: array
+          items:
+            anyOf:
+            - $ref: "#/components/schemas/PlaylistTrack"
+      description: An Playlist Object
+      example:
+        id: 0
+        tracks:
+        - ""
+        - ""
+        Name: Name
+    PlaylistTrack:
+      type: object
+      properties:
+        id:
+          type: integer
+        PlaylistId:
+          type: integer
+        TrackId:
+          type: integer
+      description: An Playlist Array
+      example:
+        PlaylistId: 6
+        id: 0
+        TrackId: 1
+    Track:
+      type: object
+      properties:
+        id:
+          type: integer
+        Name:
+          type: string
+        AlbumId:
+          type: integer
+        MediaTypeId:
+          type: integer
+        GenreId:
+          type: integer
+        Composer:
+          type: string
+        Milliseconds:
+          type: integer
+        Bytes:
+          type: integer
+        UnitPrice:
+          type: number
+          format: float
+      description: A Song Track Object
+      example:
+        Composer: Composer
+        Bytes: 2
+        MediaTypeId: 1
+        UnitPrice: 7.0614014
+        AlbumId: 6
+        GenreId: 5
+        id: 0
+        Milliseconds: 5
+        Name: Name
+
