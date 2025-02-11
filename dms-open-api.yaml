@@ -1,0 +1,847 @@
+openapi: 3.0.0
+info:
+  title: Digitial Media Store (DMS) API
+  description: This OpenAPI yaml describes the REST API for the Digital Media Store database.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000
+    description: The localhost API server for the Digital Media Store.
+  - url: http://staging-api.dms.com
+    description: The staging environment for the DMS REST API.
+
+paths:
+  /employee/{id}:
+    get:
+      summary: Returns an employee record.
+      parameters:
+        - name: id
+          in: path
+          description: Employee ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: Get a JSON object of employee
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+        "404": # status code
+          description: Unable to locate object with provided id.
+  /employee:
+    post:
+      summary: Returns a newly created employee record.
+      requestBody:
+        description: Create an employee
+        content:
+          application/json:
+            schema:
+                $ref: "#/components/schemas/Employee"
+      responses:
+        "201": # status code
+          description: Created employee
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+    put:
+      summary: Returns an updated employee record.
+      requestBody:
+        description: Update employee
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Employee"
+      responses:
+        "200": # status code
+          description: Updated employee
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+  /customer/{id}:
+    get:
+      summary: Returns a customer.
+      parameters:
+        - name: id
+          in: path
+          description: Customer ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: Get customer object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+        "404": # status code
+          description: Unable to locate object with provided id.
+  /customer:
+    post:
+      summary: Returns a newly created customer record.
+      requestBody:
+        description: Create customer
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+      responses:
+        "201": # status code
+          description: Created customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+    put:
+      summary: Returns an updated customer record.
+      requestBody:
+        description: Update customer
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+      responses:
+        "200": # status code
+          description: Updated customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+  /artist/{id}:
+    get:
+      summary: Returns an artist.
+      parameters:
+        - name: id
+          in: path
+          description: Artist ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: Get artist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Artist"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+        "404": # status code
+          description: Unable to locate object with provided id.
+  /artist:
+    post:
+      summary: Create an artist.
+      requestBody:
+        description: Create artist
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Artist"
+      responses:
+        "201": # status code
+          description: Created customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Artist"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+    put:
+      summary: Returns an updated artist.
+      requestBody:
+        description: Update artist
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Artist"
+      responses:
+        "200": # status code
+          description: Updated customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Artist"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+  /album/{id}:
+    get:
+      summary: Returns an album.
+      parameters:
+        - name: id
+          in: path
+          description: Album ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: Get album
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+        "404": # status code
+          description: Unable to locate object with provided id.
+  /album:
+    post:
+      summary: Create an album.
+      requestBody:
+        description: Create album
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Album"
+      responses:
+        "201": # status code
+          description: Created album
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+    put:
+      summary: Updates an album
+      requestBody:
+        description: Update album
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Album"
+      responses:
+        "200": # status code
+          description: Updated album
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+  /genre/{id}:
+    get:
+      summary: Returns a genre.
+      parameters:
+        - name: id
+          in: path
+          description: Genre ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: Get genre
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Genre"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+        "404": # status code
+          description: Unable to locate object with provided id.
+  /genre:
+    post:
+      summary: Create a genre.
+      requestBody:
+        description: Create genre
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Genre"
+      responses:
+        "201": # status code
+          description: Create genre
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Genre"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+    put:
+      summary: Returns an updated genre.
+      requestBody:
+        description: Update genre
+        content:
+          application/json:
+            schema:
+                $ref: "#/components/schemas/Genre"
+      responses:
+        "200": # status code
+          description: Updated genre
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Genre"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+  /mediatype/{id}:
+    get:
+      summary: Returns a media type.
+      parameters:
+        - name: id
+          in: path
+          description: Media Type ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: Get media type
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MediaType"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+        "404": # status code
+          description: Unable to locate object with provided id.
+  /mediatype:
+    post:
+      summary: Create a media type.
+      requestBody:
+        description: Create media type
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MediaType"
+      responses:
+        "201": # status code
+          description: Update customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MediaType"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+    put:
+      summary: Update a media type
+      requestBody:
+        description: Update media type
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MediaType"
+      responses:
+        "200": # status code
+          description: Updated media type
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MediaType"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+  /track/{id}:
+    get:
+      summary: Returns a song track
+      parameters:
+        - name: id
+          in: path
+          description: Track ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: Get song track
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Track"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+        "404": # status code
+          description: Unable to locate object with provided id.
+  /track:
+    post:
+      summary: Create a song track.
+      requestBody:
+        description: Create song track
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Track"
+      responses:
+        "201": # status code
+          description: Update customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Track"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+    put:
+      summary: Updates a song track
+      requestBody:
+        description: Update song track
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Track"
+      responses:
+        "200": # status code
+          description: Update customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Track"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+  /playlist/{id}:
+    get:
+      summary: Returns a playlist
+      parameters:
+        - name: id
+          in: path
+          description: Playlist ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: Update playlist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Playlist"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+        "404": # status code
+          description: Unable to locate object with provided id.
+    delete:
+      summary: Delete playlist
+      parameters:
+        - name: id
+          in: path
+          description: Playlist ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: Deleted playlist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Playlist"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+  /playlist:
+    post:
+      summary: Create a playlist.
+      requestBody:
+        description: Create playlist
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Playlist"
+      responses:
+        "201": # status code
+          description: Update customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Playlist"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+    put:
+      summary: Returns a modified playlist
+      requestBody:
+        description: Update playlist
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Playlist"
+      responses:
+        "200": # status code
+          description: Updated playlist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Playlist"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+  /playlisttrack/{id}:
+    get:
+      summary: Returns a playlist track
+      parameters:
+        - name: id
+          in: path
+          description: Playlist Track ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: Get playlist track
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaylistTrack"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+        "404": # status code
+          description: Unable to locate object with provided id.
+    delete:
+      summary: Deletes a playlist track
+      parameters:
+        - name: id
+          in: path
+          description: Playlist Track ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: Delete playlist track
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaylistTrack"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+  /playlisttrack:
+    post:
+      summary: Create a playlist track.
+      requestBody:
+        description: Create playlist track
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PlaylistTrack"
+      responses:
+        "201": # status code
+          description: Create playlist track
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaylistTrack"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+    put:
+      summary: Updates a playlist track
+      requestBody:
+        description: Update playlist track
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PlaylistTrack"
+      responses:
+        "200": # status code
+          description: Update customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaylistTrack"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+  /invoice/{id}:
+    get:
+      summary: Returns an invoice.
+      parameters:
+        - name: id
+          in: path
+          description: Invoice ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: Get invoice
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invoice"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+        "404": # status code
+          description: Unable to locate object with provided id.
+  /invoice:
+    post:
+      summary: Returns an invoice.
+      requestBody:
+        description: Create invoice
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Invoice"
+      responses:
+        "201": # status code
+          description: Create invoice
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invoice"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+    put:
+      summary: Returns an updated invoice.
+      requestBody:
+        description: Update invoice
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Invoice"
+      responses:
+        "200": # status code
+          description: Updated invoice
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invoice"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+  /invoiceline/{id}:
+    get:
+      summary: Returns a line from an invoice
+      parameters:
+        - name: id
+          in: path
+          description: Invoice Line ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: Get invoice line
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvoiceLine"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+        "404": # status code
+          description: Unable to locate object with provided id.
+  /invoiceline:
+    post:
+      summary: Create a invoice line item
+      requestBody:
+        description: Create invoice line item
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InvoiceLine"
+      responses:
+        "201": # status code
+          description: Created invoice line
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvoiceLine"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+    put:
+      summary: Update invoice line
+      requestBody:
+        description: Update invoice line
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InvoiceLine"
+      responses:
+        "200": # status code
+          description: Updated invoice line item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvoiceLine"
+        "400": # status code
+          description: Bad Request. Malformed id or payload.
+
+components:
+  schemas:
+    Album:
+      description: An Album Object
+      type: object
+      properties:
+        id:
+          type: integer
+        Title:
+          type: string
+        ArtistId:
+          type: integer
+    Artist:
+      description: An artist/musician Object
+      type: object
+      properties:
+        id:
+          type: integer
+        Name:
+          type: string
+    Customer:
+      description: A customer Object
+      type: object
+      properties:
+        id:
+          type: integer
+        LastName:
+          type: string
+        FirstName:
+          type: string
+        Company:
+          type: string
+        Address:
+          type: string
+        City:
+          type: string
+        State:
+          type: string
+        Country:
+          type: string
+        ZipCode:
+          type: string
+          pattern: 'd{5}'
+        Phone:
+          type: string
+          pattern: '[+]?d{1}? (d{3}) d{3}-d{4}'
+        Email:
+          type: string
+        SupportRepId:
+          type: integer
+    Employee:
+      description: An employee Object
+      type: object
+      properties:
+        LastName:
+          type: string
+        FirstName:
+          type: string
+        Title:
+          type: string
+        ReportsTo:
+          type: integer
+        BirthDate:
+          type: string
+          format: date
+        HireDate:
+          type: string
+          format: date
+        Company:
+          type: string
+        Address:
+          type: string
+        City:
+          type: string
+        State:
+          type: string
+        Country:
+          type: string
+        ZipCode:
+          type: string
+          pattern: 'd{5}'
+        Phone:
+          type: string
+          pattern: '[+]?d{1}? (d{3}) d{3}-d{4}'
+        Email:
+          type: string
+    Genre:
+      description: A genre classification Object
+      type: object
+      properties:
+        id:
+          type: integer
+        Name:
+          type: string
+    Invoice:
+      description: An invoice Object
+      type: object
+      properties:
+        id:
+          type: integer
+        CustomerId:
+          type: integer
+        InvoiceDate:
+          type: string
+          format: date-time
+        BillingAddress:
+          type: string
+        BillingCity:
+          type: string
+        BillingState:
+          type: string
+        BillingCountry:
+          type: string
+        BillingZipCode:
+          type: string
+          pattern: 'd{5}'
+        Total:
+          type: number
+          format: float
+        invoicelines:
+          type: array
+          items:
+            anyOf:
+              - $ref: "#/components/schemas/InvoiceLine"
+    InvoiceLine:
+      description: An invoice line Object
+      type: object
+      properties:
+        id:
+          type: integer
+        InvoiceId:
+          type: integer
+        TrackId:
+          type: integer
+        UnitPrice:
+          type: number
+          format: float
+        Quantity:
+          type: integer
+    MediaType:
+      description: An type of media Object
+      type: object
+      properties:
+        id:
+          type: integer
+        Name:
+          type: string
+    Playlist:
+      description: An Playlist Object
+      type: object
+      properties:
+        id:
+          type: integer
+        Name:
+          type: string
+        tracks:
+          type: array
+          items:
+            anyOf:
+              - $ref: "#/components/schemas/PlaylistTrack"
+    PlaylistTrack:
+      description: An Playlist Array
+      type: object
+      properties:
+        id:
+          type: integer
+        PlaylistId:
+          type: integer
+        TrackId:
+          type: integer
+    Track:
+      description: A Song Track Object
+      type: object
+      properties:
+        id:
+          type: integer
+        Name:
+          type: string
+        AlbumId:
+          type: integer
+        MediaTypeId:
+          type: integer
+        GenreId:
+          type: integer
+        Composer:
+          type: string
+        Milliseconds:
+          type: integer
+        Bytes:
+          type: integer
+        UnitPrice:
+          type: number
+          format: float
